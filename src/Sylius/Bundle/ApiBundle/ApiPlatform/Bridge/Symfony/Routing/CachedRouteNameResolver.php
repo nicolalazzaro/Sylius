@@ -41,7 +41,7 @@ final class CachedRouteNameResolver implements RouteNameResolverInterface
 
         $currentPrefix = sprintf(
             'route_name_%s_',
-            (isset($context['section'])) ? $context['section'] : $this->pathPrefixProvider->getCurrentPrefix()
+            (isset($context['section'])) ? $context['section'] : $this->pathPrefixProvider->getCurrentPrefix(),
         );
 
         $cacheKey = $currentPrefix . md5(

@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the API Platform project.
+ * This file is part of the Sylius package.
  *
- * (c) Kévin Dunglas <dunglas@gmail.com>
+ * (c) Paweł Jędrzejewski
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -48,7 +48,9 @@ final class IriConverter implements IriConverterInterface
     use ResourceClassInfoTrait;
 
     private $routeNameResolver;
+
     private $router;
+
     private $identifiersExtractor;
 
     public function __construct(
@@ -62,7 +64,7 @@ final class IriConverter implements IriConverterInterface
         SubresourceDataProviderInterface $subresourceDataProvider = null,
         IdentifierConverterInterface $identifierConverter = null,
         ResourceClassResolverInterface $resourceClassResolver = null,
-        ResourceMetadataFactoryInterface $resourceMetadataFactory = null
+        ResourceMetadataFactoryInterface $resourceMetadataFactory = null,
     ) {
         $this->itemDataProvider = $itemDataProvider;
         $this->routeNameResolver = $routeNameResolver;
@@ -75,7 +77,7 @@ final class IriConverter implements IriConverterInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      *
      * @return object
      */
@@ -123,7 +125,7 @@ final class IriConverter implements IriConverterInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getIriFromItem($item, int $referenceType = null): string
     {
@@ -138,12 +140,12 @@ final class IriConverter implements IriConverterInterface
         return $this->getItemIriFromResourceClass(
             $resourceClass,
             $identifiers,
-            $this->getReferenceType($resourceClass, $referenceType)
+            $this->getReferenceType($resourceClass, $referenceType),
         );
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getIriFromItemInSection($item, string $section, int $referenceType = null): string
     {
@@ -159,12 +161,12 @@ final class IriConverter implements IriConverterInterface
             $resourceClass,
             $identifiers,
             $this->getReferenceType($resourceClass, $referenceType),
-            $section
+            $section,
         );
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getIriFromResourceClass(string $resourceClass, int $referenceType = null): string
     {
@@ -176,7 +178,7 @@ final class IriConverter implements IriConverterInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getItemIriFromResourceClass(string $resourceClass, array $identifiers, int $referenceType = null, string $section = null): string
     {
@@ -195,7 +197,7 @@ final class IriConverter implements IriConverterInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getSubresourceIriFromResourceClass(string $resourceClass, array $context, int $referenceType = null): string
     {
